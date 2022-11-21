@@ -6,7 +6,7 @@ const UserLogin = (props) => {
             </div>
             <div class="card-body">
             <form id="editForm"
-            name="domoForm"
+            name="loginForm"
             action="Login">
                 <label htmlFor="username">Username: </label>
                 <input id="user" type="text" name="username" placeholder="username" />
@@ -28,7 +28,7 @@ const SignupWindow = (props) => {
             </div>
             <div class="card-body">
                 <form id="editForm"
-                name="domoForm"
+                name="signupForm"
                 action="Login">
                     <label htmlFor="username">Username: </label>
                     <input id="user" type="text" name="username" placeholder="username" />
