@@ -47,6 +47,23 @@ const SignupWindow = (props) => {
 const init = async () => {
     const response = await fetch('/getToken');
     const data = await response.json();
+
+    const loginButton = document.getElementById('loginButton');
+    const signupButton = document.getElementById('signupButton'); 
+
+    loginButton.addEventListener('click',(e)=>{
+        e.preventDefault();
+        ReactDOM.render(<UserLogin csrf="Placeholer" />,
+        document.querySelector("#content"));
+        return false;
+    });
+
+    signupButton.addEventListener('click',(e)=>{
+        e.preventDefault();
+        ReactDOM.render(<SignupWindow csrf="Placeholer" />,
+        document.querySelector("#content"));
+        return false;
+    });
 }
 
 window.onload = init;

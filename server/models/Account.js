@@ -36,7 +36,7 @@ const AccountSchema = new mongoose.Schema({
   gamesPlayed: {
     type: Number,
     min: 0,
-    required: true
+    required: true,
   },
   HighScore: {
     type: Number,
@@ -55,6 +55,10 @@ const AccountSchema = new mongoose.Schema({
   createdDate: {
     type: Date,
     default: Date.now,
+  },
+  Admin: {
+    type: Boolean,
+    required: true,
   },
 });
 

@@ -2,10 +2,10 @@ const models = require('../models');
 
 const { Account } = models;
 const loginPage = (req, res) => {
-  res.render('login', { csrfToken: req.csrfToken() });
+  res.render('index');
 };
 
-const getToken = (req, res) => res.json({ csrfToken: req.csrfToken() });
+const getToken = (req, res) => res.json({ csrfToken: 'Gay' });
 const logout = (req, res) => {
   req.session.destroy();
   res.redirect('/');

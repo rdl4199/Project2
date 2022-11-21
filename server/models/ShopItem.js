@@ -4,7 +4,7 @@
    standard tool for encrypting passwords. Mongoose is our tool for
    interacting with our mongo database.
 */
-const bcrypt = require('bcrypt');
+// const bcrypt = require('bcrypt');
 const mongoose = require('mongoose');
 
 /* When generating a password hash, bcrypt (and most other password hash
@@ -13,9 +13,9 @@ const mongoose = require('mongoose');
    for people to decrypt the passwords stored in our database. saltRounds
    essentially defines the number of times we will hash the password and salt.
 */
-const saltRounds = 10;
+// const saltRounds = 10;
 
-let AccountModel = {};
+let ShopItemModel = {};
 
 /* Our schema defines the data we will store. A username (string of alphanumeric
    characters), a password (actually the hashed version of the password created
@@ -46,14 +46,14 @@ const ShopItemSchema = new mongoose.Schema({
   },
 });
 
-// Converts a doc to something we can store in redis later on.
-AccountSchema.statics.toAPI = (doc) => ({
-  username: doc.username,
-  _id: doc._id,
-});
+// // Converts a doc to something we can store in redis later on.
+// AccountSchema.statics.toAPI = (doc) => ({
+//   username: doc.username,
+//   _id: doc._id,
+// });
 
 // Helper function to hash a password
-AccountSchema.statics.generateHash = (password) => bcrypt.hash(password, saltRounds);
+// AccountSchema.statics.generateHash = (password) => bcrypt.hash(password, saltRounds);
 
 ShopItemModel = mongoose.model('ShopItem', ShopItemSchema);
 module.exports = ShopItemModel;
