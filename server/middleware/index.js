@@ -1,13 +1,15 @@
 const requiresLogin = (req, res, next) => {
   if (!req.session.account) {
+    console.log('NOOOO');
     return res.redirect('/');
   }
+  console.log('YEAAAA');
   return next();
 };
 
 const requiresLogout = (req, res, next) => {
   if (req.session.account) {
-    return res.redirect('/maker');
+    return res.redirect('/shop');
   }
   return next();
 };

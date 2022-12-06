@@ -5,11 +5,12 @@ const favicon = require('serve-favicon');
 // const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const PIXI = require('pixi.js');
 const expressHandlebars = require('express-handlebars');
 // const helmet = require('helmet');
 const session = require('express-session');
-// const RedisStore = require('connect-redis')(session);
-// const redis = require('redis');
+const RedisStore = require('connect-redis')(session);
+const redis = require('redis');
 // const csrf = require('csurf');
 const router = require('./router.js');
 
@@ -17,13 +18,13 @@ const router = require('./router.js');
 
 const port = process.env.PORT || process.env.NODE_PORT || 3000;
 const dbURI = process.env.MONGODB_URI || 'mongodb://127.0.0.1/Warehouse';
-// const redisURL = process.env.REDISCLOUD_URL
+const redisURL = process.env.REDISCLOUD_URL
 
-// const redisClient = redis.createClient({
-//   legacyMode: true,
-//   url: redisURL,
-// });
-// redisClient.connect().catch(console.error);
+const redisClient = redis.createClient({
+  legacyMode: true,
+  url: redisURL,
+});
+redisClient.connect().catch(console.error);
 mongoose.connect(dbURI, (err) => {
   if (err) {
     console.log('could not connect to database');
@@ -41,9 +42,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(session({
   key: 'sessionid',
-  // store: new RedisStore({
-  //   client: redisClient,
-  // }),
+  store: new RedisStore({
+    client: redisClient,
+  }),
   secret: 'Joe Mother',
   resave: true,
   saveUninitialized: true,

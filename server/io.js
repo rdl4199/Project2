@@ -1,3 +1,5 @@
+// Mostly all of this is taken from the demo
+
 const http = require('http');
 const { Server } = require('socket.io');
 
