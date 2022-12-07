@@ -2,6 +2,7 @@
     it from our client code. The io() function comes from the socket.io
     client side library, which is in a script tag in views/index.handlebars.
 */
+
 const socket = io();
 
 /* This function is responsible for setting up events related to the edit

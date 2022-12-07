@@ -1,0 +1,15 @@
+.small {
+    white-space: nowrap;
+}
+
+.carousel-control-prev {
+    background-color: #222;
+}
+
+.carousel-control-next {
+    background-color: #222;
+}
+
+.row{
+    margin: 0
+}

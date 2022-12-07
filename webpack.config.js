@@ -5,6 +5,9 @@ module.exports = {
         app: './client/app.jsx',
         login: './client/homeLogin.jsx',
         edit: './client/edit.jsx',
+        profile: './client/profile.jsx',
+        score: './client/highScore.jsx',
+        io: './client/app.js'
     },
     module: {
         rules: [
