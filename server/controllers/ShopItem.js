@@ -27,7 +27,7 @@ const getUserSkins = async (req, res) => {
   ShopItemModel.find({
     _id: {
       $in:
-            acctDetails.SkinOwned,
+      acctDetails.SkinOwned,
     },
   }, (err, docs) => {
     if (err) {

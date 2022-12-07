@@ -11,6 +11,8 @@ const router = (app) => {
   app.post('/login', mid.requiresSecure, mid.requiresLogout, controllers.Account.login);
   app.get('/getItems', mid.requiresLogin, controllers.ShopItem.getItems);
   app.get('/profile', mid.requiresLogin, controllers.Account.profilePage);
+  app.post('/changeSkin', mid.requiresLogin, controllers.Account.changeSkin);
+  app.post('/postScore', mid.requiresLogin, controllers.Account.postScore)
 
   app.post('/changePassword', mid.requiresSecure, controllers.Account.changePassword);
   app.post('/signup', mid.requiresSecure, mid.requiresLogout, controllers.Account.signup);
@@ -22,7 +24,7 @@ const router = (app) => {
   app.get('/getAccountDetails', mid.requiresLogin, controllers.Account.AccountDetails);
   app.post('/purchase', mid.requiresLogin, controllers.Account.buyItem);
 
-  // app.get('/*', controllers.notFound);
+  app.get('/*', controllers.notFound);
 };
 
 module.exports = router;

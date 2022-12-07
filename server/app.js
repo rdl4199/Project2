@@ -18,7 +18,7 @@ const router = require('./router.js');
 
 const port = process.env.PORT || process.env.NODE_PORT || 3000;
 const dbURI = process.env.MONGODB_URI || 'mongodb://127.0.0.1/Warehouse';
-const redisURL = process.env.REDISCLOUD_URL
+const redisURL = process.env.REDISCLOUD_URL || 'redis://default:yIoEFYnd97RRgu1Vx7GjOa3e5Psut1O9@redis-15336.c82.us-east-1-2.ec2.cloud.redislabs.com:15336'
 
 const redisClient = redis.createClient({
   legacyMode: true,
