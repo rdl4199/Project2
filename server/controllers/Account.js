@@ -23,49 +23,45 @@ const logout = (req, res) => {
 
 const changeSkin = async (req, res) => {
   const skinImg = `${req.body.skinImg}`;
-  
-  try{
+
+  try {
     await AccountModel.findByIdAndUpdate(
       `${req.session.account._id}`,
-      {  currentSkin: skinImg },
+      { currentSkin: skinImg },
     ).exec();
     return res.json({ redirect: '/profile' });
   } catch (err) {
     return res.status(400).json({ error: 'An error occured' });
   }
-  
-}
+};
 
 const postScore = async (req, res) => {
-  const score = `${req.body.score}`
-  const currency = `${req.body.money}`
+  const score = `${req.body.score}`;
+  const currency = `${req.body.money}`;
   let acct;
   try {
     await AccountModel.findByIdAndUpdate(
       `${req.session.account._id}`,
-      {  $inc: { Currency: currency }},
+      { $inc: { Currency: currency } },
     ).exec();
 
     await AccountModel.findByIdAndUpdate(
       `${req.session.account._id}`,
-      {  $inc: { gamesPlayed: 1 }},
+      { $inc: { gamesPlayed: 1 } },
     ).exec();
 
     acct = await AccountModel.findById(req.session.account._id).exec();
-    if(acct.HighScore < score)
-    {
+    if (acct.HighScore < score) {
       await AccountModel.findByIdAndUpdate(
         `${req.session.account._id}`,
-        {   HighScore: score },
+        { HighScore: score },
       ).exec();
     }
     return res.json({ redirect: '/shop' });
   } catch (err) {
     return res.status(400).json({ error: 'An error occured' });
   }
-  
-
-}
+};
 
 const changePassword = (req, res) => {
   const username = `${req.body.username}`;
@@ -126,7 +122,7 @@ const signup = async (req, res) => {
   try {
     const hash = await Account.generateHash(pass);
     const newAccount = new Account({
-      username, password: hash, Admin: false, Currency: 100, HighScore: 0, gamesPlayed: 0, currentSkin: 'pallet.png', SkinOwned: ['6385155b899e49fd8da09bf6']
+      username, password: hash, Admin: false, Currency: 100, HighScore: 0, gamesPlayed: 0, currentSkin: 'pallet.png', SkinOwned: ['6385155b899e49fd8da09bf6'],
     });
     await newAccount.save();
     req.session.account = Account.toAPI(newAccount);

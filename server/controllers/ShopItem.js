@@ -1,5 +1,4 @@
 // const models = require('../models');
-const { default: mongoose } = require('mongoose');
 const ShopItemModel = require('../models/ShopItem');
 const AccountModel = require('../models/Account');
 
@@ -17,9 +16,7 @@ const getItems = (req, res) => ShopItemModel.find({}, (err, docs) => {
 });
 
 const getUserSkins = async (req, res) => {
-  let acctDetails;
-  acctDetails = await AccountModel.findById(req.session.account._id).exec();
-  console.log(acctDetails);
+  const acctDetails = await AccountModel.findById(req.session.account._id).exec();
   // const skins = acctDetails.SkinOwned.map(skin => {
   //     console.log(skin)
   //     mongoose.Types.ObjectId(`${skin}`)

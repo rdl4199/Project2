@@ -1,4 +1,3 @@
-const { ContextReplacementPlugin } = require('webpack');
 const controllers = require('./controllers');
 const mid = require('./middleware');
 
@@ -12,7 +11,7 @@ const router = (app) => {
   app.get('/getItems', mid.requiresLogin, controllers.ShopItem.getItems);
   app.get('/profile', mid.requiresLogin, controllers.Account.profilePage);
   app.post('/changeSkin', mid.requiresLogin, controllers.Account.changeSkin);
-  app.post('/postScore', mid.requiresLogin, controllers.Account.postScore)
+  app.post('/postScore', mid.requiresLogin, controllers.Account.postScore);
 
   app.post('/changePassword', mid.requiresSecure, controllers.Account.changePassword);
   app.post('/signup', mid.requiresSecure, mid.requiresLogout, controllers.Account.signup);
